@@ -28,12 +28,13 @@ class LinkedList:
     Contains the actual implementation of a singly linked list.
     Requires startData (optional): A single data point to start the linked list.
     Methods:
-        get(), add(), delete(), getAll()
+        get(), getAll(), add(), delete(), pop(), len()
     """
 
     def __init__(self, startData=None) -> None:
         self.__list = dict()
         self.start = None
+        self.length = 0
         if startData is not None:
             self.start = self.__createPos()
             self.__createNode(startData, self.start, None)
@@ -44,6 +45,7 @@ class LinkedList:
         """
         nd = Node(data, next)
         self.__list[pos] = nd
+        self.length += 1
 
     def __createPos(self):
         """
@@ -90,6 +92,8 @@ class LinkedList:
         """
         Returns a certain node given its index
         """
+        if index > self.length:
+            raise IndexError("Index out of range of the linked list")
         if index == -1:
             return self.__list[self.__getLast()].data
         else:
@@ -112,4 +116,30 @@ class LinkedList:
         """
         Delete a certain node, given index
         """
-        pass
+        if index > self.length or index < 0:
+            raise IndexError("Index out of range of the linked list")
+        if index == self.length - 1:
+            self.pop()
+            return
+        loc = self.__getAtIndex(index)
+        nextLoc = self.__list[loc].next
+        self.__list.pop(index)
+
+        if index == 0:
+            self.start = nextLoc
+        else:
+            preLoc = self.__getAtIndex(index-1)
+            self.__list[preLoc].next = nextLoc
+
+    def pop(self):
+        """
+        Delete the last node
+        """
+        self.__list[-2].next = None
+        self.__list.pop(self.length-1)
+
+    def len(self):
+        """
+        Returns length of the list
+        """
+        return self.length
