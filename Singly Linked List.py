@@ -77,13 +77,3 @@ class LinkedList:
     def delete(self, index):
         pass
 
-
-l2 = LinkedList(25)
-print(l2.getAll())
-print(l2.get(0))
-print(l2.get(-1))
-l2.add(33)
-print(l2.get(0))
-print(l2.get(1))
-print(l2.get(-1))
-print(l2.getAll())

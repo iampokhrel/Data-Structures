@@ -4,7 +4,7 @@ class stack:
         if data is not None:
             self.__stack__.append(data)
 
-    def push(self, data): 
+    def push(self, data):
         self.__stack__.append(data)
 
     def pop(self):
@@ -12,5 +12,3 @@ class stack:
 
     def peek(self):
         return self.__stack__[-1]
-
-
