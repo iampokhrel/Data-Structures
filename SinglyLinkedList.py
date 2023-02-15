@@ -111,6 +111,7 @@ class LinkedList:
             pos = self.__createPos()
             self.__list[last].next = pos
             self.__createNode(data, pos, None)
+        self.length += 1
 
     def delete(self, index):
         """
@@ -130,6 +131,7 @@ class LinkedList:
         else:
             preLoc = self.__getAtIndex(index-1)
             self.__list[preLoc].next = nextLoc
+        self.length -= 1
 
     def pop(self):
         """
